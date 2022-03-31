@@ -8,13 +8,13 @@ const nn = (s, min) => {
   return n != null && n > min ? n : min
 }
 
-const MaxClusters   = nn(process.env.LKEBOT_MAX_CLUSTERS   || '5', 1)
-const MaxNodes      = nn(process.env.LKEBOT_MAX_NODES      || '3', 1)
+const MaxClusters   = nn(process.env.LKE_MAX_CLUSTERS      || '5', 1)
+const MaxNodes      = nn(process.env.LKE_MAX_NODES         || '3', 1)
 const OffLimits     = ll(process.env.LKEBOT_OFF_LIMITS     || '')
 const SweepInterval = nn(process.env.LKEBOT_SWEEP_INTERVAL || '0', 0)
 
 const LKE = new Context(
-                  process.env.LKEBOT_TOKEN || 'no-token-provided',
+                  process.env.LINODE_TOKEN || 'no-token-provided',
                   {
                     offLimits:   OffLimits,
                     maxNodes:    MaxNodes,
