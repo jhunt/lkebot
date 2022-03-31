@@ -1,0 +1,15 @@
+{
+  "name": "lkebot",
+  "version": "0.8.0",
+  "description": "Deploy LKE clusters via Slaaaaaaaaack!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "James Hunt <james@huntprod.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@linode/api-v4": "^0.66.0",
+    "@slack/bolt": "^3.10.0"
+  }
+}
