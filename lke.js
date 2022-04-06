@@ -164,6 +164,8 @@ class Context {
 
   async refresh() {
     console.log(`[lke] refreshing list of clusters from upstream...`)
+    // LKE only ever gives back 'ready' or 'not_ready'
+    const translateStatus = (is, was) => is == 'ready' ? IsLive : was
 
     // first we mark
     for (let k in this.clusters) {
@@ -186,11 +188,12 @@ class Context {
           })
         }
         console.log(`[lke] found ${spec.size}-node v${spec.version} cluster "${c.label}" (on ${spec.instance}) with status "${c.status}"`)
-        this.clusters[c.label] = new Cluster(c.label, c.status == 'ready' ? IsLive : IsTerminating, spec)
+        this.clusters[c.label] = new Cluster(c.label, translateStatus(c.status, IsDeploying), spec)
       }
       this.clusters[c.label].lke = c
       this.clusters[c.label].id = c.id
       this.clusters[c.label].seen = true
+      this.clusters[c.label].status = translateStatus(c.status, this.clusters[c.label].status)
     })
 
     // and then we cleanup
