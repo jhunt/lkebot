@@ -205,10 +205,11 @@ class Context {
           this.clusters[k].status = IsGone
           this.clusters[k].deleteAfter = addHours(now, 0.25)
         }
-        if (this.clusters[k].deleteAfter <= now) {
-          console.log(`[lke] cluster "${k}" has been GONE long enough; dropping it from the list`)
-          delete this.clusters[k]
-        }
+      }
+
+      if (this.clusters[k].deleteAfter <= now) {
+        console.log(`[lke] cluster "${k}" has been GONE long enough; dropping it from the list`)
+        delete this.clusters[k]
       }
     }
   }
