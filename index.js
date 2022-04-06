@@ -9,7 +9,7 @@ const app = new App({
 });
 
 const dispatch = async (msg, say) => {
-  msg = msg.replace(/\s*<@.*?>\s*/g, '')
+  msg = msg.replace(/\s*<@.*?>\s*/g, '').toLowerCase()
   console.log(`in: "${msg}"`)
   bot.go(parse(msg), say)
 }
