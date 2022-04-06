@@ -52,7 +52,9 @@ const any = (...m) => (words, op) => {
 }
 
 const p = g => (w, o) => {
-  g(w, o)
+  let r = g(w, o)
+  if (!r) { return null }
+  if (r[0].length > 0) { return null }
   return o
 }
 

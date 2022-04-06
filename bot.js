@@ -87,6 +87,11 @@ const go = async (op, say) => {
       return
 
     case 'deploy':
+      if (!op.cluster) {
+        say('what do you want to call your new cluster? you might try `deploy my-cluster`')
+        return
+      }
+
       let spec = {
         region:   op.region,
         instance: op.instance,
